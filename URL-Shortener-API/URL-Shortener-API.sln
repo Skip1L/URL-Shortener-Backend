@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URL-Shortener-API", "URL-Shortener-API.csproj", "{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "..\Web\Web.csproj", "{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{FAA5155D-3168-4158-BB5B-D58F11F187D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{8E8911E7-49EF-4B1E-8C49-21921F5A9151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA5155D-3168-4158-BB5B-D58F11F187D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA5155D-3168-4158-BB5B-D58F11F187D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA5155D-3168-4158-BB5B-D58F11F187D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA5155D-3168-4158-BB5B-D58F11F187D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8911E7-49EF-4B1E-8C49-21921F5A9151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8911E7-49EF-4B1E-8C49-21921F5A9151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8911E7-49EF-4B1E-8C49-21921F5A9151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8911E7-49EF-4B1E-8C49-21921F5A9151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
