@@ -15,9 +15,13 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7012;http://localhost:5044",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "environmentVariables": {
+            "API_KEY": "sjgienghs;vcsfrtuifs1)d56fdsaw67",
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "AUDIENCE": "ShortUrlHost",
+            "ISSUER": "ShortUrlIssuer",
+            "TOKEN_EXPIRATION_TIME": "7200"
+        }
     }
   }
 }
