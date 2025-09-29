@@ -1,11 +1,30 @@
+using Domain.Entities;
+using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+{
+    options
+        .UseSqlServer(builder.Configuration.GetValue<string>("DBConnectionString"))
+        .UseLazyLoadingProxies();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+    {
+        options.Lockout.AllowedForNewUsers = true;
+        options.Lockout.MaxFailedAccessAttempts = 5;
+    }).AddEntityFrameworkStores<ApplicationContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
