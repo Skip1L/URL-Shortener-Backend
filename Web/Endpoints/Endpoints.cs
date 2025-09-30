@@ -1,4 +1,6 @@
-﻿using Application.Services.Interfaces;
+﻿using System.Security.Claims;
+using Application.DTOs;
+using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -56,6 +58,63 @@ public static class Endpoints
             var token = await tokenService.CreateToken(user);
 
             return Results.Ok(new { Username = user.UserName, Token = token });
-        });
+        })
+            .WithTags("Account")
+            .WithName("LoginUser"); ;
+
+        app.MapGroup("/api/urls")
+            .RequireAuthorization()
+            .WithTags("ShortUrls")
+            .MapPost("/", async (
+                ShortenUrlRequest request,
+                IUrlService urlService,
+                HttpContext context) =>
+            {
+                var userIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out var userId))
+                {
+                    return Results.Unauthorized();
+                }
+
+                var shortUrl = await urlService.CreateShortUrlAsync(
+                    request.OriginalUrl,
+                    userId,
+                    context.RequestAborted
+                );
+
+                if (shortUrl == null)
+                {
+                    return Results.Conflict(new { error = "This URL has already been shortened." });
+                }
+
+                var baseUrl = $"{context.Request.Scheme}://{context.Request.Host}";
+                var fullShortUrl = $"{baseUrl}/{shortUrl.ShortCode}";
+
+                return Results.Created(fullShortUrl, new
+                {
+                    id = shortUrl.Id,
+                    originalUrl = shortUrl.OriginalUrl,
+                    shortCode = shortUrl.ShortCode,
+                    shortUrl = fullShortUrl
+                });
+            })
+            .WithName("CreateShortUrl");
+
+        app.MapGet("/{shortCode}", async (
+                string shortCode,
+                IUrlService urlService,
+                CancellationToken cancellationToken) =>
+            {
+                var shortUrl = await urlService.GetByCodeAsync(shortCode, cancellationToken);
+
+                if (shortUrl == null)
+                {
+                    return Results.NotFound(new { error = $"Short URL '{shortCode}' not found." });
+                }
+
+                return Results.Redirect(shortUrl.OriginalUrl, permanent: true);
+            })
+            .AllowAnonymous()
+            .WithName("RedirectToOriginalUrl");
     }
 }

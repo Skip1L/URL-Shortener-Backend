@@ -11,6 +11,9 @@ internal sealed class ShortUrlConfiguration : IEntityTypeConfiguration<ShortUrl>
         builder.ToTable("ShortUrls");
         builder.HasKey(u => u.Id);
 
+        builder.Property(s => s.Id)
+            .ValueGeneratedOnAdd();
+
         builder.HasOne(u => u.CreatedBy)
             .WithMany(b => b.ShortUrls)
             .HasForeignKey(b => b.CreatedById);

@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class User : IdentityUser<Guid>, IBaseEntity
+public class User : IdentityUser<Guid>, IBaseEntity<Guid>
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }

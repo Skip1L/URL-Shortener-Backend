@@ -1,8 +1,8 @@
 ﻿namespace Domain.Entities;
 
-public interface IBaseEntity
+public interface IBaseEntity<TKey>
 {
-    public Guid Id { get; set; }
+    public TKey Id { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? LastUpdatedAt { get; set; }
 }
