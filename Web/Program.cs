@@ -1,6 +1,4 @@
-﻿using System.Reflection;
 using System.Text;
-using Application.Helpers;
 using Application.Mapping;
 using Application.Repositories;
 using Application.Services;
@@ -21,8 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 
-builder.Services.AddRazorPages();
-
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     options
@@ -35,13 +31,6 @@ builder.Services.AddScoped<IShortUrlRepository, ShortUrlRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUrlService,UrlService>();
 
-builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
-    {
-        options.Lockout.AllowedForNewUsers = true;
-        options.Lockout.MaxFailedAccessAttempts = 5;
-    })
-    .AddEntityFrameworkStores<ApplicationContext>()
-    .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>
     {
@@ -65,6 +54,27 @@ builder.Services.AddAuthentication(options =>
             RequireExpirationTime = true
         };
     });
+
+builder.Services.AddDefaultIdentity<User>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Lockout.AllowedForNewUsers = true;
+        options.Lockout.MaxFailedAccessAttempts = 5;
+    })
+    .AddRoles<IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<ApplicationContext>()
+    .AddDefaultTokenProviders();
+
+//builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+//    {
+//        options.SignIn.RequireConfirmedAccount = false;
+//        options.Lockout.AllowedForNewUsers = true;
+//        options.Lockout.MaxFailedAccessAttempts = 5;
+//    })
+//    .AddEntityFrameworkStores<ApplicationContext>()
+//    .AddDefaultTokenProviders();
+
+builder.Services.AddRazorPages();
 
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
@@ -107,12 +117,27 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapFallbackToFile("index.html");
 app.MapRazorPages();
+
+
+//app.UseSpa(spa =>
+//{
+//    spa.Options.SourcePath = "react-app";
+
+//    if (app.Environment.IsDevelopment())
+//    {
+//        spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+//    }
+//});
 
 await app.InitializeDbForRoles();
 

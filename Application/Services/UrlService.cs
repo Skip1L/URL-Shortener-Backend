@@ -1,4 +1,6 @@
-﻿using Application.Helpers;
+﻿using System.Threading;
+using Application.DTOs;
+using Application.Helpers;
 using Application.Repositories;
 using Application.Services.Interfaces;
 using Domain.Entities;
@@ -30,9 +32,24 @@ namespace Application.Services
             return shortUrl;
         }
 
+        public async Task<IEnumerable<ShortUrl>> GetAllUrlsAsync(CancellationToken cancellationToken)
+        {
+            return await shortUrlRepository.GetAllUrls(cancellationToken);
+        }
+
         public async Task<ShortUrl> GetByCodeAsync(string code, CancellationToken cancellationToken)
         {
             return await shortUrlRepository.GetByCodeAsync(code, cancellationToken);
+        }
+
+        public async Task<ShortUrl> GetUrlDetailsAsync(long id, CancellationToken cancellationToken)
+        {
+            return await shortUrlRepository.FirstOrDefaultAsync(url => url.Id == id, cancellationToken);
+        }
+
+        public async Task<bool> DeleteUrlAsync(long id, CancellationToken cancellationToken)
+        {
+            return await shortUrlRepository.DeleteAsync(id, cancellationToken);
         }
     }
 }

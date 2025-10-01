@@ -10,6 +10,11 @@ namespace Infrastructure.Persistence.Repositories
             return await FirstOrDefaultAsync(u => u.ShortCode == code, cancellationToken);
         }
 
+        public async Task<IEnumerable<ShortUrl>> GetAllUrls(CancellationToken cancellationToken = default)
+        {
+            return await GetAll(cancellationToken);
+        }
+
         public async Task<ShortUrl> GetByOriginalUrlAsync(string originalUrl, CancellationToken cancellationToken = default)
         {
             return await FirstOrDefaultAsync(u => u.OriginalUrl == originalUrl, cancellationToken);

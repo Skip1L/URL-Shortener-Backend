@@ -17,7 +17,7 @@ public static class EntitySeeder
             .ToList();
 
         foreach (var roleName in rolesToCreate)
-            if (!await roleManager.RoleExistsAsync(roleName))
+            if (!await roleManager.RoleExistsAsync(roleName!))
             {
                 var identityRole = new IdentityRole<Guid> { Name = roleName };
                 await roleManager.CreateAsync(identityRole);

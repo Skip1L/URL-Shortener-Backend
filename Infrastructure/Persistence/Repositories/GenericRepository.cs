@@ -73,5 +73,10 @@ namespace Infrastructure.Persistence.Repositories
         {
             return await _repositoryContext.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task<List<TEntity>> GetAll(CancellationToken cancellationToken = default)
+        {
+            return await _repositoryContext.Set<TEntity>().ToListAsync(cancellationToken: cancellationToken);
+        }
     }
 }

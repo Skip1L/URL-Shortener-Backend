@@ -7,13 +7,29 @@
     <UserSecretsId>c68b8593-d957-4a35-98b0-549709c5064f</UserSecretsId>
   </PropertyGroup>
 
+	<Target Name="BuildClient" BeforeTargets="Build">
+		<Exec Command="npm install" WorkingDirectory="react-app" />
+		<Exec Command="npm run build" WorkingDirectory="react-app" />
+		<ItemGroup>
+			<DistFiles Include="react-app/build/**" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DistFiles)" DestinationFolder="wwwroot\%(RecursiveDir)" />
+	</Target>
+
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.20" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.20" />
+	<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.20" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.20">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.20" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 

@@ -6,5 +6,6 @@ namespace Application.Repositories
     {
         Task<ShortUrl> GetByOriginalUrlAsync(string originalUrl, CancellationToken cancellationToken = default);
         Task<ShortUrl> GetByCodeAsync(string code, CancellationToken cancellationToken = default);
+        Task<IEnumerable<ShortUrl>> GetAllUrls(CancellationToken cancellationToken = default);
     }
 }

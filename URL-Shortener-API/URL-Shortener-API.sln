@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URL-Shortener-API", "URL-Shortener-API.csproj", "{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "..\Web\Web.csproj", "{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{EAB62B9F-B8DE-41DB-B4AF-21F648E7AF0D}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F66DB168-CEBA-4DFA-8983-CC14704DBD1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33D50CD3-65DD-4A24-8F7D-FAFCA232AE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
